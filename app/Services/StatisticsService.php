@@ -92,7 +92,7 @@ class StatisticsService
 //        $data = $this->observationModel->select('location')->limit(20000)->get()->toArray();
 
         $test = $this->getDistanceBetweenTwoCoordinates($ny, $la);
-        dd($test);
+        // dd($test);
 //        foreach ($data as $item) {
 //            dd($item);
 //        }
