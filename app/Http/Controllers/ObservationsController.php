@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use App\Http\Requests\RequestObservations;
 use App\Services\ObservationsService;
 
 class ObservationsController extends Controller
@@ -20,7 +20,7 @@ class ObservationsController extends Controller
         $this->service = $service;
     }
 
-    public function store(Request $request)
+    public function store(RequestObservations $request)
     {
         $data = $this->service->validateData($request->all());
         if($data === false) {
