@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Services\ObservationsService;
 
-class ObservationsControlller extends Controller
+class ObservationsController extends Controller
 {
 	public $service;
 
