@@ -3,19 +3,27 @@
 namespace Tests\Integration;
 
 use Tests\TestCase;
-use Illuminate\Foundation\Testing\RefreshDatabase;
+use App\Models\ObservationModel;
 
-class ExampleTest extends TestCase
+class ObservationsTest extends TestCase
 {
     /**
-     * A basic test example.
-     *
      * @return void
      */
-    public function testBasicTest()
+    public function testCreateObservation()
     {
-        $response = $this->get('/');
+        $observation = factory(ObservationModel::class)->make();
+        $data = $observation->toArray();
+        $data = implode('|', $data);
+        $response = $this->post('/api/observations', [$data]);
 
         $response->assertStatus(200);
+        $response->assertJsonStructure([
+            'id',
+            'timestamp',
+            'location',
+            'temperature',
+            'observatory'
+        ]);
     }
 }

@@ -2,18 +2,35 @@
 
 namespace Tests\Unit;
 
+use Mockery;
 use Tests\TestCase;
-use Illuminate\Foundation\Testing\RefreshDatabase;
+use App\Models\ObservationModel;
+use App\Services\ObservationsService;
 
-class ExampleTest extends TestCase
+class ObservationsTest extends TestCase
 {
+    /**
+     * @var mockModel
+     */
+    private $mockModel;
+
     /**
      * A basic test example.
      *
      * @return void
      */
-    public function testBasicTest()
+    public function testCreateObservation()
     {
-        $this->assertTrue(true);
+        $defaultModel = factory(ObservationModel::class)->make();
+        $this->mockModel = Mockery::mock(ObservationModel::class);
+        $this->mockModel->allows([
+            "create" => collect($defaultModel->toArray()),
+        ]);
+
+        $service = new ObservationsService($this->mockModel);
+        $returnService = $service->store([]);
+
+        $this->assertEquals($defaultModel->toArray(), $returnService);
+        $this->assertTrue(is_array($returnService));
     }
 }
