@@ -65,7 +65,7 @@ class ObservationsService
      * @param string $data
      * @return array
      */
-    private function parseData(string $data): array
+    public function parseData(string $data): array
     {
         $data = explode("|", $data);
         $param = [];
