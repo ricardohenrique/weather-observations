@@ -7,7 +7,7 @@ use Tests\TestCase;
 use App\Models\ObservationModel;
 use App\Services\ObservationsService;
 
-class ObservationsTest extends TestCase
+class ObservationsUnitTest extends TestCase
 {
     /**
      * @var mockModel
@@ -15,8 +15,6 @@ class ObservationsTest extends TestCase
     private $mockModel;
 
     /**
-     * A basic test example.
-     *
      * @return void
      */
     public function testCreateObservation()
@@ -29,6 +27,36 @@ class ObservationsTest extends TestCase
 
         $service = new ObservationsService($this->mockModel);
         $returnService = $service->store([]);
+
+        $this->assertEquals($defaultModel->toArray(), $returnService);
+        $this->assertTrue(is_array($returnService));
+    }
+
+    /**
+     * @return void
+     */
+    public function testValidateData()
+    {
+        $defaultModel = factory(ObservationModel::class)->make();
+        $this->mockModel = Mockery::mock(ObservationModel::class);
+        $service = new ObservationsService($this->mockModel);
+
+        $returnService = $service->validateData([implode('|', $defaultModel->toArray())]);
+
+        $this->assertEquals($defaultModel->toArray(), $returnService);
+        $this->assertTrue(is_array($returnService));
+    }
+
+    /**
+     * @return void
+     */
+    public function testParseData()
+    {
+        $defaultModel = factory(ObservationModel::class)->make();
+        $this->mockModel = Mockery::mock(ObservationModel::class);
+        $service = new ObservationsService($this->mockModel);
+
+        $returnService = $service->parseData(implode('|', $defaultModel->toArray()));
 
         $this->assertEquals($defaultModel->toArray(), $returnService);
         $this->assertTrue(is_array($returnService));

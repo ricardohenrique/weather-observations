@@ -5,7 +5,7 @@ namespace Tests\Integration;
 use Tests\TestCase;
 use App\Models\ObservationModel;
 
-class ObservationsTest extends TestCase
+class ObservationsIntegrationTest extends TestCase
 {
     /**
      * @return void
