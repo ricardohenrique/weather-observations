@@ -14,3 +14,8 @@ use Illuminate\Http\Request;
 */
 
 Route::post('observations', 'ObservationsControlller@store');
+Route::get('statistics/temperature/max', 'StatisticsController@getMaxTemperature');
+Route::get('statistics/temperature/min', 'StatisticsController@getMinTemperature');
+Route::get('statistics/temperature/mean', 'StatisticsController@getMeanTemperature');
+Route::get('statistics/observations', 'StatisticsController@getObservations');
+Route::get('statistics/distance', 'StatisticsController@getDistance');
