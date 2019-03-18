@@ -9,8 +9,8 @@ use Log;
 class ObservationsService
 {
     const GROUPVALIDATIONS = [
-        'timestamp'   => 'validateObservationTimestamp',
         'location'    => 'validateObservationLocation',
+        'timestamp'   => 'validateObservationTimestamp',
         'temperature' => 'validateObservationTemperature',
         'observatory' => 'validateObservationObservatory'
     ];
